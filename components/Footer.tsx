@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { footerLinks } from "@/constants";
 
-
 const Footer = () => {
   return (
     <footer className="flex flex-col text-black-100 mt-5 border-t border-gray-100">
@@ -13,9 +12,44 @@ const Footer = () => {
             Suji Self Drive Cars <br /> All Rights Reserved &copy;
           </p>
         </div>
+
+        <div className="footer__links">
+          {footerLinks.map((linkGroup) => (
+            <div key={linkGroup.title} className="footer__link">
+              <h3 className="font-bold">
+                {linkGroup.title}
+              </h3>
+              {linkGroup.links.map((item) => (
+                <a
+                  key={item.title}
+                  href={item.url}
+                  className="text-gray-500"
+                >
+                  {item.title}
+                </a>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="flex justify-between items-center sm:px-16 px-6 py-5 border-t border-gray-100">
+        <div className="flex items-center w-full justify-between">
+          <p className="text-gray-700">
+            @2018 Suji Self Drive Cars. All Rights Reserved.
+          </p>
+          <div className="footer__copyrights-link flex gap-4">
+            <Link href="/" className="text-gray-500">
+              Privacy & Policy
+            </Link>
+            <Link href="/" className="text-gray-500">
+              Terms And Conditions
+            </Link>
+          </div>
+        </div>
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;
